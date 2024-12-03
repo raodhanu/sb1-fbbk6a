@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Averia+Libre:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --purple-primary: #5E1F5D;
+  --coral-primary: #FF5C39;
+  --yellow-primary: #FFB800;
+  --blue-primary: #3E92CC;
+  --green-primary: #4CAF50;
+  --cream-bg: #FFF8E7;
+}
+
+body {
+  font-family: 'Averia Libre', cursive;
+  background-color: var(--cream-bg);
+}
+
+.crayon-border {
+  background: linear-gradient(90deg, var(--purple-primary) 33%, transparent 33%) top left,
+              linear-gradient(90deg, var(--purple-primary) 33%, transparent 33%) bottom left,
+              linear-gradient(0deg, var(--purple-primary) 33%, transparent 33%) top left,
+              linear-gradient(0deg, var(--purple-primary) 33%, transparent 33%) top right;
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-size: 9px 2px, 9px 2px, 2px 9px, 2px 9px;
+}
+
+/* Feature Card Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.feature-card {
+  transition: all 0.3s ease-in-out;
+}
+
+.feature-card:hover {
+  animation: float 3s ease-in-out infinite;
+}
