@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 export const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -21,14 +21,11 @@ export const signupSchema = z.object({
 
 export const childSchema = z.object({
   id: z.string().optional(),
-  fullName: z.string()
-    .min(2, 'Name must be at least 2 characters')
-    .max(50, 'Name must not exceed 50 characters'),
-  birthDate: z.string()
-    .refine((date) => new Date(date) <= new Date(), {
-      message: 'Birth date cannot be in the future',
-    }),
-  gender: z.enum(['male', 'female']),
+  fullName: z.string().min(1, 'Full name is required'),
+  birthDate: z.string().refine((value) => !isNaN(Date.parse(value)), {
+    message: 'Invalid date format',
+  }),
+  gender: z.enum(['male', 'female'], { required_error: 'Gender is required' }),
 });
 
 export const childrenSchema = z.array(childSchema);
